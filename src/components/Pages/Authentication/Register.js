@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, Navigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import SocialLogin from './SocialLogin';
 
 const Register = () => {
+    const [updateProfile] = useUpdateProfile(auth);
     const [
         createUserWithEmailAndPassword,
         user,
@@ -13,11 +15,21 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const onSubmit = data => {
-        createUserWithEmailAndPassword(data.email, data.password);
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name })
+        const newUser = {
+            email: data.email,
+            userName: data.name,
+        }
+        axios.put(`http://localhost:4000/add-user/${data.email}`, newUser)
+            .then(res => {
+                console.log("token ", res.data?.token);
+                localStorage.setItem('token', res.data?.token);
+            })
     };
     if (user) {
-        return <Navigate to='/'/>
+        return <Navigate to='/' />
     }
     return (
 
@@ -47,7 +59,7 @@ const Register = () => {
                         class="input input-bordered input-primary w-full max-w-lg my-3" />
 
                     {errors.password?.type === "required" && <p className='text-warning'>Please Enter Your Password</p>}
-                    {error && <p className='text-warning'>{ error.message}</p>}
+                    {error && <p className='text-warning'>{error.message}</p>}
                     <button
                         type="submit"
                         class={loading ? 'btn btn-primary w-full loading' : 'btn btn-primary w-full'}>
