@@ -7,6 +7,8 @@ import AddProduct from './components/Pages/Business/AddProduct';
 import Purchase from './components/Pages/Business/Purchase';
 import AddReview from './components/Pages/Dashboard/AddReview';
 import Dashboard from './components/Pages/Dashboard/Dashboard';
+import MakeAdmin from './components/Pages/Dashboard/MakeAdmin';
+import ManageProducts from './components/Pages/Dashboard/ManageProducts';
 import MyOrders from './components/Pages/Dashboard/MyOrders';
 import MyProfile from './components/Pages/Dashboard/MyProfile';
 import Home from './components/Pages/Home/Home';
@@ -25,6 +27,9 @@ function App() {
           <Route path='profile' element={<MyProfile />}></Route>
           <Route path='orders' element={<MyOrders />}></Route>
           <Route path='add-review' element={<AddReview />}></Route>
+          <Route path='make-admin' element={<MakeAdmin />}></Route>
+          <Route path='manage-product' element={<ManageProducts />}></Route>
+          <Route path='add-product' element={<AddProduct />}></Route>
         </Route>
         <Route path='/add' element={<AddProduct />}></Route>
         <Route path='/purchase/:id' element={<RequireAuth><Purchase /></RequireAuth>}></Route>
