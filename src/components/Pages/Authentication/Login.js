@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -11,13 +12,25 @@ const Login = () => {
         user,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
+    ] = useSignInWithEmailAndPassword(auth);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const onSubmit = data =>{
-        signInWithEmailAndPassword(data.email, data.password);
+    const onSubmit = async data => {
+        await signInWithEmailAndPassword(data.email, data.password);
+        // const newUser = {
+        //     email: user?.user?.email,
+        //     userName: user?.user?.displayName,
+        // }
+
+        // console.log('objectNew', newUser);
+        // axios.put(`http://localhost:4000/add-user/${user.email}`, newUser)
+        //     .then(res => {
+        //         console.log("token ", res.data?.token);
+        //         localStorage.setItem('token', res.data?.token);
+        //     })
+
     };
     if (user) {
-        return <Navigate to='/'/>
+        return <Navigate to='/' />
     }
     return (
 
@@ -39,9 +52,9 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         class="input input-bordered input-primary w-full max-w-lg mt-3" />
-                        <p className='text-blue-700 mb-3 cursor-pointer'>Reset Password</p>
+                    <p className='text-blue-700 mb-3 cursor-pointer'>Reset Password</p>
                     {errors.password?.type === "required" && <p className='text-warning'>Please Enter Your Password</p>}
-                    {error && <p className='text-warning'>{ error.message}</p>}
+                    {error && <p className='text-warning'>{error.message}</p>}
                     <button
                         type="submit"
                         class={loading ? 'btn btn-primary w-full loading' : 'btn btn-primary w-full'}>

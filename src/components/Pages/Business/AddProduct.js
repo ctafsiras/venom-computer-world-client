@@ -14,7 +14,10 @@ const AddProduct = () => {
             image: data.image
         }
         axios.post('http://localhost:4000/add-product', product)
-        .then(res=>console.log(res))
+        .then(res=>{
+            reset();
+            console.log(res)})
+        
     };
     return (
         <div className='max-w-lg'>

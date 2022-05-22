@@ -25,7 +25,7 @@ const MyOrders = () => {
                         <th>No</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Quantity</th>
+                        <th>Ordered Quantity</th>
                         <th>Status</th>
                         <th>Pay</th>
                         <th>Cancel</th>

@@ -8,11 +8,9 @@ const SocialLogin = () => {
     const handleSignIn = async () => {
         await signInWithGoogle();
         const newUser = {
-            email: user.email,
-            userName: user.name,
+            email: user.user?.email,
+            userName: user.user?.displayName,
         }
-        console.log('user ', user);
-        console.log('newuser ', newUser);
         axios.put(`http://localhost:4000/add-user/${user.email}`, newUser)
             .then(res => {
                 console.log("token ", res.data?.token);

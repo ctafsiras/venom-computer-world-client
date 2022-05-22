@@ -22,7 +22,7 @@ const Purchase = () => {
             email: user.email,
             productName: product.name,
             productPrice: product.price,
-            productQuantity: product.quantity,
+            productQuantity: orderAmount,
             paid: false,
             status: 'Not Paid',
 
