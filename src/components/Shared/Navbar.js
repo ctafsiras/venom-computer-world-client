@@ -10,7 +10,7 @@ const Navbar = () => {
     const menu = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/blogs'>Blogs</NavLink></li>
-        <li><NavLink to='/about'>About</NavLink></li>
+        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
         {user ?
             <button
                 onClick={() => signOut(auth)}
