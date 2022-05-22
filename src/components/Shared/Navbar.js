@@ -1,12 +1,23 @@
+import autoprefixer from 'autoprefixer';
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
+    const [user, loading] = useAuthState(auth);
     const menu = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/blogs'>Blogs</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
+        {user ?
+            <button
+                onClick={() => signOut(auth)}
+                className='btn btn-outline'>Logout</button>
+            : <li><NavLink to='/login'>Login</NavLink></li>
+
+        }
     </>
     return (
         <div class="navbar bg-base-100 lg:px-12">
