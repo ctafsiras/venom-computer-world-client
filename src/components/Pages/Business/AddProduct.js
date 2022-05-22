@@ -10,7 +10,7 @@ const AddProduct = () => {
             description: data.description,
             price: data.price,
             quantity: data.quantity,
-            max_order: data.max_order,
+            min_order: data.min_order,
             image: data.image
         }
         axios.post('http://localhost:4000/add-product', product)
