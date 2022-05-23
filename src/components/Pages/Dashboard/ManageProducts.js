@@ -30,8 +30,7 @@ const ManageProducts = () => {
                 <tbody>
 
                     {
-                        products.map((product, index) => <>
-                            <tr>
+                        products.map((product, index) =>  <tr key={index}>
                                 <th>{index + 1}</th>
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
@@ -40,8 +39,7 @@ const ManageProducts = () => {
                                 <td><button
                                     onClick={() => handleCancel(product._id)}
                                     className='btn btn-outline btn-error'>Delete</button></td>
-                            </tr>
-                        </>)
+                            </tr>)
                     }
 
                 </tbody>

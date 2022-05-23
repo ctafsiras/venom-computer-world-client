@@ -29,9 +29,9 @@ const MakeAdmin = () => {
                 <tbody>
 
                     {
-                        users.map((user, index) => <>
+                        users.map((user, index) =>
                             <tr
-
+                                key={index}
                             >
                                 <th>{index + 1}</th>
                                 <td>{user.userName}</td>
@@ -40,7 +40,7 @@ const MakeAdmin = () => {
                                     onClick={() => makeAdmin(user._id)}
                                     className='btn btn-outline btn-success'>Make Admin</button> : 'Already Admin'}</td>
                             </tr>
-                        </>)
+                        )
                     }
 
                 </tbody>

@@ -10,7 +10,6 @@ const MyProfile = () => {
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
-    console.log(currentUser);
     const handleEducation = e => {
         e.preventDefault();
         const education = e.target.education.value;
@@ -18,7 +17,6 @@ const MyProfile = () => {
         axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
-                console.log(res)
             })
     }
     const handlePhone = e => {
@@ -28,7 +26,6 @@ const MyProfile = () => {
         axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
-                console.log(res)
             })
     }
     const handleLinkedin = e => {
@@ -38,7 +35,6 @@ const MyProfile = () => {
         axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
-                console.log(res)
             })
     }
     const handleLocation = e => {
@@ -48,7 +44,6 @@ const MyProfile = () => {
         axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
-                console.log(res)
             })
     }
     return (

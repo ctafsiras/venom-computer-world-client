@@ -29,12 +29,12 @@ const AddReview = () => {
             .then(res => {
                 reset();
                 refetch();
-                console.log(res)
             })
 
     };
     return (
         <div className='max-w-lg'>
+
 
             {
                 oldReview ?
@@ -52,6 +52,7 @@ const AddReview = () => {
                     :
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
+                            <h2 className='text-secondary text-3xl font-bold mb-5'>Please Add Your Review Here!</h2>
                             <input
                                 {...register("rating", { required: true })}
                                 type="number" placeholder="Enter Your Rating between 0 to 10." className="input input-bordered w-full mb-3" /><br />
