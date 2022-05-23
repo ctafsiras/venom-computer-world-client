@@ -2,9 +2,11 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Login from './components/Pages/Authentication/Login';
 import Register from './components/Pages/Authentication/Register';
+import RequireAdmin from './components/Pages/Authentication/RequireAdmin';
 import RequireAuth from './components/Pages/Authentication/RequireAuth';
 import Blogs from './components/Pages/Blogs';
 import AddProduct from './components/Pages/Business/AddProduct';
+import Payment from './components/Pages/Business/Payment';
 import Purchase from './components/Pages/Business/Purchase';
 import AddReview from './components/Pages/Dashboard/AddReview';
 import Dashboard from './components/Pages/Dashboard/Dashboard';
@@ -28,10 +30,11 @@ function App() {
         <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
           <Route path='profile' element={<MyProfile />}></Route>
           <Route path='orders' element={<MyOrders />}></Route>
+          <Route path='payment/:id' element={<Payment />}></Route>
           <Route path='add-review' element={<AddReview />}></Route>
-          <Route path='make-admin' element={<MakeAdmin />}></Route>
-          <Route path='manage-product' element={<ManageProducts />}></Route>
-          <Route path='add-product' element={<AddProduct />}></Route>
+          <Route path='make-admin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
+          <Route path='manage-product' element={<RequireAdmin><ManageProducts /></RequireAdmin>}></Route>
+          <Route path='add-product' element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
         </Route>
         <Route path='/add' element={<AddProduct />}></Route>
         <Route path='/purchase/:id' element={<RequireAuth><Purchase /></RequireAuth>}></Route>

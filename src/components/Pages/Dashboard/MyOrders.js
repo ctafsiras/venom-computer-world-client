@@ -1,12 +1,16 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
-    const { data: orders, isLoading, refetch } = useQuery('product', () => fetch(`http://localhost:4000/get-order/${user.email}`).then(res => res.json()));
+    const [openModal, setOpenModal] = useState(false);
+    const [orderId, setOrderId] = useState('');
+    const { data: orders, isLoading, refetch } = useQuery('get-order', () => fetch(`http://localhost:4000/get-order/${user.email}`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
@@ -35,18 +39,23 @@ const MyOrders = () => {
 
                     {
                         orders.map((order, index) => <>
-                            <tr>
+                            <tr key={index}>
                                 <th>{index + 1}</th>
                                 <td>{order.productName}</td>
                                 <td>{order.productPrice}</td>
                                 <td>{order.productQuantity}</td>
                                 <td>{order.status}</td>
-                                <td><button
+                                <td>{order.paid ? <small>Transaction ID<br />{order.transaction}</small> : <Link to={`/dashboard/payment/${order._id}`}><button
 
-                                    className='btn btn-outline btn-primary'>Pay</button></td>
-                                <td><button
-                                    onClick={() => handleCancel(order._id)}
-                                    className='btn btn-outline btn-error'>Cancel</button></td>
+                                    className='btn btn-outline btn-primary'>Pay</button></Link>}</td>
+                                <td><label
+
+                                    onClick={() => {
+                                        setOpenModal(true)
+                                        setOrderId(order._id)
+                                    }}
+                                    for="my-modal-6"
+                                    className={order.paid ? `btn btn-disabled` : 'btn btn-outline btn-error'}>Cancel</label></td>
                             </tr>
                         </>)
                     }
@@ -56,6 +65,10 @@ const MyOrders = () => {
             {
                 orders.length === 0 && <p className='text-xl p-4 text-warning'>Sorry! You DoNot Have Any Order Right Now, Please Order something</p>
             }
+            {openModal && <DeleteConfirmModal
+                handleCancel={handleCancel}
+                orderId={orderId}
+            ></DeleteConfirmModal>}
         </div>
     );
 };

@@ -8,7 +8,7 @@ import auth from '../../../firebase.init';
 const Purchase = () => {
     const [user] = useAuthState(auth);
     const { id } = useParams();
-    const [orderAmount, setOrderAmount] = useState();
+    const [orderAmount, setOrderAmount] = useState(10);
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
 
@@ -39,6 +39,7 @@ const Purchase = () => {
 
                 if (res.status === 200) {
                     const newQuantity = product.quantity - orderAmount;
+                    console.log(newQuantity);
                     const p = {
                         quantity: newQuantity
                     }
@@ -51,6 +52,7 @@ const Purchase = () => {
                 }
             })
     }
+
     return (
         <div className=''>
             <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -67,7 +69,6 @@ const Purchase = () => {
                     <p>Minimum Order: {product.min_order} pieces</p>
                     <h2 className='text-primary mt-2'>Order For: {user.displayName} ({user.email})</h2>
                     <input
-                        defaultValue={product.min_order}
                         required
                         value={orderAmount}
                         onChange={(e) => setOrderAmount(parseInt(e.target.value) || 0)}
