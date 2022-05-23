@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 const ManageProducts = () => {
     const { data: products, isLoading, refetch } = useQuery('product', () => fetch(`http://localhost:4000/get-product`).then(res => res.json()));
     if (isLoading) {
-        return <progress class="progress w-56"></progress>
+        return <progress className="progress w-full"></progress>
     }
     const handleCancel = id => {
         axios.delete(`http://localhost:4000/delete-product/${id}`)
@@ -15,8 +15,8 @@ const ManageProducts = () => {
             })
     }
     return (
-        <div class="overflow-x-auto">
-            <table class="table w-full">
+        <div className="overflow-x-auto">
+            <table className="table w-full">
                 <thead>
                     <tr>
                         <th>No</th>

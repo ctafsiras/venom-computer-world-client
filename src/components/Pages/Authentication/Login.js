@@ -1,12 +1,20 @@
 import axios from 'axios';
-import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
+    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(
+        auth
+    );
+
+    const [email, setEmail] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
     const [
         signInWithEmailAndPassword,
         user,
@@ -30,34 +38,40 @@ const Login = () => {
 
     };
     if (user) {
-        return <Navigate to='/' />
+        navigate(from, { replace: true });
     }
     return (
 
-        <div class="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10 mx-auto h-[90vh]">
-            <div class="self-center font-bold mb-6 text-xl font-light text-gray-600 sm:text-2xl">
+        <div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10 mx-auto h-[90vh]">
+            <div className="self-center font-bold mb-6 text-xl font-light text-gray-600 sm:text-2xl">
                 Login To Your Account
             </div>
             <SocialLogin></SocialLogin>
-            <div class="mt-5">
+            <div className="mt-5">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
+                        onChange={(e) => setEmail(e.target.value)}
                         {...register("email", { required: true })}
                         type="email"
                         placeholder="Email"
-                        class="input input-bordered input-primary w-full max-w-lg" />
-                    {errors.email?.type === "required" && <p className='text-warning'>Please Enter Your Email</p>}
+                        className="input input-bordered input-primary w-full max-w-lg" />
+                    {errors.email?.type === "required" && <p className='text-red-500'>Please Enter Your Email</p>}
                     <input
                         {...register("password", { required: true })}
                         type="password"
                         placeholder="Password"
-                        class="input input-bordered input-primary w-full max-w-lg mt-3" />
-                    <p className='text-blue-700 mb-3 cursor-pointer'>Reset Password</p>
-                    {errors.password?.type === "required" && <p className='text-warning'>Please Enter Your Password</p>}
-                    {error && <p className='text-warning'>{error.message}</p>}
+                        className="input input-bordered input-primary w-full max-w-lg mt-3" />
+                    <p
+                        onClick={() => {
+                            sendPasswordResetEmail(email)
+                            alert("Email Sent");
+                        }}
+                        className='text-blue-700 mb-3 cursor-pointer'>Reset Password</p>
+                    {errors.password?.type === "required" && <p className='text-red-500'>Please Enter Your Password</p>}
+                    {error && <p className='text-red-500'>{error.message}</p>}
                     <button
                         type="submit"
-                        class={loading ? 'btn btn-primary w-full loading' : 'btn btn-primary w-full'}>
+                        className={loading ? 'btn btn-primary w-full loading' : 'btn btn-primary w-full'}>
                         Login
                     </button>
                 </form>

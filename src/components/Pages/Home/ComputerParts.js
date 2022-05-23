@@ -3,9 +3,9 @@ import { useQuery } from 'react-query';
 import ComputerPartCard from './ComputerPartCard';
 
 const ComputerParts = () => {
-    const { data : products, isLoading} = useQuery('product', () => fetch('http://localhost:4000/get-product').then(res => res.json()));
+    const { data: products, isLoading } = useQuery('product', () => fetch('http://localhost:4000/get-product').then(res => res.json()));
     if (isLoading) {
-        return <progress class="progress w-56"></progress>
+        return <progress className="progress w-full"></progress>
     }
     return (
         <div className="bg-white">

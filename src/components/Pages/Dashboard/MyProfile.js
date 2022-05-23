@@ -8,7 +8,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const { data: currentUser, isLoading, refetch } = useQuery(['get-user-email', user], () => fetch(`http://localhost:4000/get-user/${user.email}`).then(res => res.json()));
     if (isLoading) {
-        return <progress class="progress w-56"></progress>
+        return <progress className="progress w-full"></progress>
     }
     console.log(currentUser);
     const handleEducation = e => {
@@ -59,33 +59,33 @@ const MyProfile = () => {
             {
                 currentUser.education ? <h3>Education: {currentUser.education}</h3> :
                     <form onSubmit={handleEducation}>
-                        <input name='education' type="text" placeholder="Enter Your Educational Qualification" class="input input-bordered w-full max-w-xs mt-2" />
+                        <input name='education' type="text" placeholder="Enter Your Educational Qualification" className="input input-bordered w-full max-w-xs mt-2" />
                         <button type='submit'
-                            class="btn ml-2">Save</button>
+                            className="btn ml-2">Save</button>
                     </form>
             }
             {
                 currentUser.phone ? <h3>Mobile Number: {currentUser.phone}</h3> :
                     <form onSubmit={handlePhone}>
-                        <input name='phone' type="number" placeholder="Enter Your Mobile Number" class="input input-bordered w-full max-w-xs mt-2" />
+                        <input name='phone' type="number" placeholder="Enter Your Mobile Number" className="input input-bordered w-full max-w-xs mt-2" />
                         <button type='submit'
-                            class="btn ml-2">Save</button>
+                            className="btn ml-2">Save</button>
                     </form>
             }
             {
                 currentUser.linkedin ? <h3>Linkedin Profile: {currentUser.linkedin}</h3> :
                     <form onSubmit={handleLinkedin}>
-                        <input name='linkedin' type="text" placeholder="Enter Your Linkedin Profile URL" class="input input-bordered w-full max-w-xs mt-2" />
+                        <input name='linkedin' type="text" placeholder="Enter Your Linkedin Profile URL" className="input input-bordered w-full max-w-xs mt-2" />
                         <button type='submit'
-                            class="btn ml-2">Save</button>
+                            className="btn ml-2">Save</button>
                     </form>
             }
             {
                 currentUser.location ? <h3>Location: {currentUser.location}</h3> :
                     <form onSubmit={handleLocation}>
-                        <input name='location' type="text" placeholder="Enter Your Location" class="input input-bordered w-full max-w-xs mt-2" />
+                        <input name='location' type="text" placeholder="Enter Your Location" className="input input-bordered w-full max-w-xs mt-2" />
                         <button type='submit'
-                            class="btn ml-2">Save</button>
+                            className="btn ml-2">Save</button>
                     </form>
             }
         </div>

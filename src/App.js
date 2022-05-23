@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Login from './components/Pages/Authentication/Login';
 import Register from './components/Pages/Authentication/Register';
 import RequireAuth from './components/Pages/Authentication/RequireAuth';
+import Blogs from './components/Pages/Blogs';
 import AddProduct from './components/Pages/Business/AddProduct';
 import Purchase from './components/Pages/Business/Purchase';
 import AddReview from './components/Pages/Dashboard/AddReview';
@@ -21,9 +22,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />}></Route>
+        <Route path='/blogs' element={<Blogs />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
-        <Route path='/dashboard' element={<Dashboard />}>
+        <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
           <Route path='profile' element={<MyProfile />}></Route>
           <Route path='orders' element={<MyOrders />}></Route>
           <Route path='add-review' element={<AddReview />}></Route>

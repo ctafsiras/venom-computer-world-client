@@ -8,18 +8,25 @@ import auth from '../../../firebase.init';
 const Purchase = () => {
     const [user] = useAuthState(auth);
     const { id } = useParams();
-    const [orderAmount, setOrderAmount] = useState(1);
+    const [orderAmount, setOrderAmount] = useState();
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
 
     const { data: product, isLoading, refetch } = useQuery('product-id', () => fetch(`http://localhost:4000/get-id-product/${id}`).then(res => res.json()));
     if (isLoading) {
-        return <progress class="progress w-56"></progress>
+        return <progress className="progress w-full"></progress>
     }
 
 
     const handleOrder = () => {
+        if ((phone || address) === '') {
+            return alert('Please Enter Your Phone and Address')
+        }
         const order = {
             productId: product._id,
             email: user.email,
+            address,
+            phone,
             productName: product.name,
             productPrice: product.price,
             productQuantity: orderAmount,
@@ -45,9 +52,9 @@ const Purchase = () => {
             })
     }
     return (
-        <div className='flex justify-center items-center w-full'>
-            <div className="lg:flex">
-                <div className='w-full'>
+        <div className=''>
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className='w-8/12 mx-auto'>
                     <img
                         className='w-full rounded-lg'
                         src={product.image} alt="" />
@@ -58,12 +65,24 @@ const Purchase = () => {
                     <p>Price: <span className='font-bold'>${product.price}</span></p>
                     <p>Stock Available: {product.quantity} pieces</p>
                     <p>Minimum Order: {product.min_order} pieces</p>
+                    <h2 className='text-primary mt-2'>Order For: {user.displayName} ({user.email})</h2>
                     <input
+                        defaultValue={product.min_order}
+                        required
                         value={orderAmount}
                         onChange={(e) => setOrderAmount(parseInt(e.target.value) || 0)}
-                        type="text" placeholder="Enter Order Quantity" class="input input-bordered w-full max-w-xs mt-3" />
+                        type="text" placeholder="Enter Order Quantity" className="input input-bordered w-full max-w-xs mt-3" /> <br />
+
                     {orderAmount < product.min_order && <p className='text-error'>Your Order is too Low!</p>}
                     {orderAmount > product.quantity && <p className='text-error'>Your Order is too High!</p>}
+                    <input
+                        required
+                        onChange={(e) => setPhone(parseInt(e.target.value) || 0)}
+                        type="text" placeholder="Enter Your Phone Number" className="input input-bordered w-full max-w-xs mt-3" /> <br />
+                    <input
+                        required
+                        onChange={(e) => setAddress(parseInt(e.target.value) || 0)}
+                        type="text" placeholder="Enter Delivery Address" className="input input-bordered w-full max-w-xs mt-3" /> <br />
                     <button
                         disabled={(orderAmount < product.min_order) || (orderAmount > product.quantity)}
                         onClick={handleOrder}

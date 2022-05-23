@@ -14,10 +14,11 @@ const AddProduct = () => {
             image: data.image
         }
         axios.post('http://localhost:4000/add-product', product)
-        .then(res=>{
-            reset();
-            console.log(res)})
-        
+            .then(res => {
+                reset();
+                console.log(res)
+            })
+
     };
     return (
         <div className='max-w-lg'>
@@ -25,23 +26,23 @@ const AddProduct = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input
                     {...register("name", { required: true })}
-                    type="text" placeholder="Product Name" class="input input-bordered w-full mb-3" /><br />
+                    type="text" placeholder="Product Name" className="input input-bordered w-full mb-3" /><br />
                 <textarea
                     {...register("description", { required: true })}
-                    type="text" placeholder="Product Description" class="textarea input-bordered w-full mb-3" /><br />
+                    type="text" placeholder="Product Description" className="textarea input-bordered w-full mb-3" /><br />
                 <input
                     {...register("quantity", { required: true })}
-                    type="number" placeholder="Product Quantity" class="input input-bordered w-full mb-3" /><br />
+                    type="number" placeholder="Product Quantity" className="input input-bordered w-full mb-3" /><br />
                 <input
                     {...register("price", { required: true })}
-                    type="number" placeholder="Product Price" class="input input-bordered w-full mb-3" /><br />
+                    type="number" placeholder="Product Price" className="input input-bordered w-full mb-3" /><br />
                 <input
                     {...register("min_order", { required: true })}
-                    type="number" placeholder="Minimum Order" class="input input-bordered w-full mb-3" /><br />
+                    type="number" placeholder="Minimum Order" className="input input-bordered w-full mb-3" /><br />
                 <input
                     {...register("image", { required: true })}
-                    type="text" placeholder="Product Image" class="input input-bordered w-full mb-3" /><br />
-                <button type='submit' class="btn btn-primary w-full">Add Product</button>
+                    type="text" placeholder="Product Image" className="input input-bordered w-full mb-3" /><br />
+                <button type='submit' className="btn btn-primary w-full">Add Product</button>
             </form>
 
         </div>

@@ -6,25 +6,25 @@ const SecureTransactions = () => {
     {
       name: 'Competitive exchange rates',
       description:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+        'We Provides Competitive Exchange rates which is rare right now.',
       icon: GlobeAltIcon,
     },
     {
       name: 'No hidden fees',
       description:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+        'We dont charge any hidden fees. all of our charges are very neat and clear.',
       icon: ScaleIcon,
     },
     {
       name: 'Transfers are instant',
       description:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+        'Our Dealing method is fully transparent and instant service.',
       icon: LightningBoltIcon,
     },
     {
       name: 'Mobile notifications',
       description:
-        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+        'Every transaction between we and our customer is updated by Mobile notification.',
       icon: AnnotationIcon,
     },
   ]

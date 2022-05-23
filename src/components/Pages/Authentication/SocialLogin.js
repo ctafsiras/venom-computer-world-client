@@ -24,7 +24,7 @@ const SocialLogin = () => {
             {error && <p className='text-warning my-3'>{error.message}</p>}
             <button
                 onClick={handleSignIn}
-                type="button" class={loading ? 'btn btn-outline btn-secondary w-full loading' : 'btn btn-outline btn-secondary w-full'}>
+                type="button" className={loading ? 'btn btn-outline btn-secondary w-full loading' : 'btn btn-outline btn-secondary w-full'}>
                 Continue With Google
             </button>
         </div>

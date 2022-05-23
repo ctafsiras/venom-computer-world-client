@@ -13,6 +13,7 @@ const ComputerPartCard = ({ product }) => {
                 <h2 className='text-xl font-bold text-primary'>Product: {product.name}</h2>
                 <p>Description: {product.description}</p>
                 <p>Price: <span className='font-bold'>${product.price}</span></p>
+                <p>Available: {product.quantity} pieces</p>
                 <p>Minimum Order: {product.min_order} pieces</p>
                 <Link
                     to={`/purchase/${product._id}`}

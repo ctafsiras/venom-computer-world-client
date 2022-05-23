@@ -29,22 +29,22 @@ const WhyWeBest = () => {
                 </div>
                 <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
                     <img
-                        src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-01.jpg"
+                        src="https://i.ebayimg.com/thumbs/images/g/5h0AAOSwjOBiD6uS/s-l300.jpg"
                         alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
                         className="bg-gray-100 rounded-lg"
                     />
                     <img
-                        src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-02.jpg"
+                        src="https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/38/527332/1.jpg"
                         alt="Top down view of walnut card tray with embedded magnets and card groove."
                         className="bg-gray-100 rounded-lg"
                     />
                     <img
-                        src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-03.jpg"
+                        src="https://s.alicdn.com/@sc04/kf/Haf2532ef020642efa833e8181cf3ea62U.jpg_300x300.jpg"
                         alt="Side of walnut card tray with card groove and recessed card area."
                         className="bg-gray-100 rounded-lg"
                     />
                     <img
-                        src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-04.jpg"
+                        src="https://images10.newegg.com/NeweggImage/ProductImage/11-147-237-01.jpg"
                         alt="Walnut card tray filled with cards and card angled in dedicated groove."
                         className="bg-gray-100 rounded-lg"
                     />

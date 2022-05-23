@@ -5,10 +5,10 @@ import { useQuery } from 'react-query';
 const MakeAdmin = () => {
     const { data: users, isLoading, refetch } = useQuery('get-user', () => fetch(`http://localhost:4000/get-user`).then(res => res.json()));
     if (isLoading) {
-        return <progress class="progress w-56"></progress>
+        return <progress className="progress w-full"></progress>
     }
     const makeAdmin = id => {
-        const newAdmin={role: 'admin'}
+        const newAdmin = { role: 'admin' }
         axios.patch(`http://localhost:4000/update-user/${id}`, newAdmin)
             .then(res => {
                 refetch();
@@ -16,8 +16,8 @@ const MakeAdmin = () => {
             })
     }
     return (
-        <div class="overflow-x-auto">
-            <table class="table w-full">
+        <div className="overflow-x-auto">
+            <table className="table w-full">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -31,14 +31,14 @@ const MakeAdmin = () => {
                     {
                         users.map((user, index) => <>
                             <tr
-                               
+
                             >
                                 <th>{index + 1}</th>
                                 <td>{user.userName}</td>
                                 <td>{user.email}</td>
                                 <td>{(user.role !== 'admin') ? <button
                                     onClick={() => makeAdmin(user._id)}
-                                    className='btn btn-outline btn-success'>Make Admin</button>: 'Already Admin'}</td>
+                                    className='btn btn-outline btn-success'>Make Admin</button> : 'Already Admin'}</td>
                             </tr>
                         </>)
                     }
