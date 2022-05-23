@@ -24,6 +24,8 @@ const CheckoutForm = ({ order, price }) => {
     }, [price]);
 
 
+    //checkout page for order something
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setSuccess('');

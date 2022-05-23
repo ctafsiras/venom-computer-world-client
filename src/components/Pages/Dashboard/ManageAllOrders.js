@@ -7,6 +7,7 @@ import auth from '../../../firebase.init';
 import DeleteConfirmModal from './DeleteConfirmModal';
 
 const ManageAllOrders = () => {
+    //manage all user page
     const [user] = useAuthState(auth);
     const [openModal, setOpenModal] = useState(false);
     const [orderId, setOrderId] = useState('');
@@ -21,6 +22,15 @@ const ManageAllOrders = () => {
                 console.log(res)
             })
     }
+    const handleShip = (id) => {
+        const updatedOrder = {
+            status: "Shipped",
+        }
+        axios.patch(`http://localhost:4000/update-order/${id}`, updatedOrder)
+            .then(res => {
+                refetch();
+            })
+    }
     return (
         <div className="overflow-x-auto">
             <table className="table w-full">
@@ -31,7 +41,7 @@ const ManageAllOrders = () => {
                         <th>Price</th>
                         <th>Ordered Quantity</th>
                         <th>Status</th>
-                        <th>Pay</th>
+                        {/* <th>Pay</th> */}
                         <th>Cancel</th>
                     </tr>
                 </thead>
@@ -44,11 +54,16 @@ const ManageAllOrders = () => {
                                 <td>{order.productName}</td>
                                 <td>{order.productPrice}</td>
                                 <td>{order.productQuantity}</td>
-                                <td>{order.status}</td>
-                                <td>{order.paid ? <small>Transaction ID<br />{order.transaction}</small> : <Link to={`/dashboard/payment/${order._id}`}><button
+                                <td>{order.status === "Pending" ?
+                                    <button
+                                        onClick={() => handleShip(order._id)}
+                                        className='btn btn-outline btn-primary'>Ship</button> : order.status
+                                }</td>
+                                {/* <td>{order.paid ? <small>Transaction ID<br />{order.transaction}</small> : <Link to={`/dashboard/payment/${order._id}`}><button
 
-                                    className='btn btn-outline btn-primary'>Pay</button></Link>}</td>
-                                <td><label
+                                    className='btn btn-outline btn-primary'>Pay</button></Link>}</td> */}
+                                <td>
+                                    <label
 
                                     onClick={() => {
                                         setOpenModal(true)

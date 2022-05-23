@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 
 const AddProduct = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    //product add function
     const onSubmit = data => {
         const product = {
             name: data.name,

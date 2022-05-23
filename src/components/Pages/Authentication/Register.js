@@ -9,6 +9,7 @@ import SocialLogin from './SocialLogin';
 
 const Register = () => {
     const [updateProfile] = useUpdateProfile(auth);
+    //handle register
     const [
         createUserWithEmailAndPassword,
         user,
@@ -39,6 +40,7 @@ const Register = () => {
                 Register To Your Account
             </div>
             <SocialLogin></SocialLogin>
+            
             <div className="mt-5">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input

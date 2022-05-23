@@ -17,7 +17,7 @@ const Purchase = () => {
         return <progress className="progress w-full"></progress>
     }
 
-
+    //purchase page
     const handleOrder = () => {
         if ((phone || address) === '') {
             return alert('Please Enter Your Phone and Address')

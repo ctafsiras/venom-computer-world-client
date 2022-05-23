@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ComputerPartCard = ({ product }) => {
     return (
         <div className="">
-            <div>
+            <div className='w-9/12'>
                 <img
                     className='w-full rounded-lg'
                     src={product.image} alt="" />

@@ -2,6 +2,7 @@ import React from 'react';
 import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
 
 const SecureTransactions = () => {
+  //transaction parts
   const features = [
     {
       name: 'Competitive exchange rates',

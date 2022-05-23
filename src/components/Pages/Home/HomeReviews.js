@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 
 const HomeReviews = () => {
+    //review section
     const { data: reviews, isLoading, refetch } = useQuery(['get-review'], () => fetch(`http://localhost:4000/get-review`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>

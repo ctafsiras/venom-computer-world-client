@@ -1,6 +1,7 @@
 import React from 'react';
 
 const DeleteConfirmModal = ({ orderId, handleCancel }) => {
+    
     return (
 
         <div>

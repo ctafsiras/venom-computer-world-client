@@ -1,9 +1,13 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 const ManageProducts = () => {
+    const [openModal, setOpenModal] = useState(false);
+    const [productId, setProductId] = useState('');
     const { data: products, isLoading, refetch } = useQuery('product', () => fetch(`http://localhost:4000/get-product`).then(res => res.json()));
+    //manage product section
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
@@ -36,9 +40,20 @@ const ManageProducts = () => {
                                 <td>{product.price}</td>
                                 <td>{product.quantity}</td>
                                 <td>{product.min_order}</td>
-                                <td><button
-                                    onClick={() => handleCancel(product._id)}
-                                    className='btn btn-outline btn-error'>Delete</button></td>
+                                <td>
+
+
+
+<label
+
+                                    onClick={() => {
+                                        setOpenModal(true)
+                                        setProductId(product._id)
+                                    }}
+                                    for="my-modal-6"
+                                    className='btn btn-outline btn-error'>Delete</label>
+
+                                   </td>
                             </tr>)
                     }
 
@@ -47,6 +62,10 @@ const ManageProducts = () => {
             {
                 products.length === 0 && <p className='text-xl p-4 text-warning'>Sorry! You DoNot Have Any Order Right Now, Please Order something</p>
             }
+            {openModal && <DeleteConfirmModal
+                handleCancel={handleCancel}
+                orderId={productId}
+            ></DeleteConfirmModal>}
         </div>
     );
 };

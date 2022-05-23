@@ -6,7 +6,7 @@ import auth from '../../../firebase.init';
 
 const Dashboard = () => {
 
-
+    //dashboard section
     const [user, loading] = useAuthState(auth);
     // if (loading) {
     //     return <progress className="progress w-full"></progress>

@@ -6,10 +6,16 @@ import auth from '../../../firebase.init';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
-    const { data: currentUser, isLoading, refetch } = useQuery(['get-user-email', user], () => fetch(`http://localhost:4000/get-user/${user.email}`).then(res => res.json()));
+    const { data: currentUser, isLoading, refetch } = useQuery(['get-user-email', user], () => fetch(`http://localhost:4000/get-user/${user.email}`, {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
+    //user profile section
     const handleEducation = e => {
         e.preventDefault();
         const education = e.target.education.value;

@@ -3,6 +3,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 
 const MakeAdmin = () => {
+    //make admin function
     const { data: users, isLoading, refetch } = useQuery('get-user', () => fetch(`http://localhost:4000/get-user`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>

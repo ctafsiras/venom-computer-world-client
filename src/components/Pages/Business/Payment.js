@@ -8,6 +8,8 @@ import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe('pk_test_51L0xd2HpF8f5rMG2u6TRBWsF2uRtK3KjNhwWqdYIQUubrqUhz8rm0z5yVabfYCvKgxZpuvKH60ZF6QSOvHMWVwNJ00BdxxPlKV');
 const Payment = () => {
+
+    //payment page for stripe
     const { id } = useParams();
     const { data: order, isLoading, refetch } = useQuery('get-order-id', () => fetch(`http://localhost:4000/get-order-id/${id}`).then(res => res.json()));
     if (isLoading) {

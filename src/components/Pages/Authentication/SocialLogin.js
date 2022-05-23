@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    //handle social login
     const handleSignIn = async () => {
         await signInWithGoogle();
         const newUser = {

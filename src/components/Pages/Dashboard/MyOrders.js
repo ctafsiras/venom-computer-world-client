@@ -7,6 +7,7 @@ import auth from '../../../firebase.init';
 import DeleteConfirmModal from './DeleteConfirmModal';
 
 const MyOrders = () => {
+    //user can see his all orders
     const [user] = useAuthState(auth);
     const [openModal, setOpenModal] = useState(false);
     const [orderId, setOrderId] = useState('');
