@@ -16,7 +16,7 @@ const AddReview = () => {
     }
 
     const onSubmit = data => {
-        if (data.rating < 0 || data.rating > 10) {
+        if (data.rating < 0 || data.rating > 5) {
             return alert("Give appropriate number.")
         }
         const review = {
@@ -42,7 +42,7 @@ const AddReview = () => {
                     <div className="">
                         <h2 className='text-secondary text-3xl font-bold mb-5'>My Review</h2>
                         <p className="text-2xl text-gray-800">
-                            Rating: {oldReview.rating} out of 10.
+                            Rating: {oldReview.rating} out of 5.
                         </p>
 
                         <p className="text-xl text-black py-4">
@@ -55,7 +55,7 @@ const AddReview = () => {
                             <h2 className='text-secondary text-3xl font-bold mb-5'>Please Add Your Review Here!</h2>
                             <input
                                 {...register("rating", { required: true })}
-                                type="number" placeholder="Enter Your Rating between 0 to 10." className="input input-bordered w-full mb-3" /><br />
+                                type="number" placeholder="Enter Your Rating between 0 to 5." className="input input-bordered w-full mb-3" /><br />
                             <textarea
                                 {...register("description", { required: true })}
                                 type="text" placeholder="Review Description" className="textarea input-bordered w-full mb-3" /><br />

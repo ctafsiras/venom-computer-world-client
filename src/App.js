@@ -11,6 +11,7 @@ import Purchase from './components/Pages/Business/Purchase';
 import AddReview from './components/Pages/Dashboard/AddReview';
 import Dashboard from './components/Pages/Dashboard/Dashboard';
 import MakeAdmin from './components/Pages/Dashboard/MakeAdmin';
+import ManageAllOrders from './components/Pages/Dashboard/ManageAllOrders';
 import ManageProducts from './components/Pages/Dashboard/ManageProducts';
 import MyOrders from './components/Pages/Dashboard/MyOrders';
 import MyProfile from './components/Pages/Dashboard/MyProfile';
@@ -34,6 +35,7 @@ function App() {
           <Route path='add-review' element={<AddReview />}></Route>
           <Route path='make-admin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
           <Route path='manage-product' element={<RequireAdmin><ManageProducts /></RequireAdmin>}></Route>
+          <Route path='manage-orders' element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
           <Route path='add-product' element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
         </Route>
         <Route path='/add' element={<AddProduct />}></Route>

@@ -33,7 +33,7 @@ const HomeReviews = () => {
                                         {review.name}
                                     </p>
                                     <p className="text-xl text-gray-500 dark:text-gray-200 font-light">
-                                        {review.rating}/10.
+                                        Rating: {review.rating}/5.
                                     </p>
                                     <p className="text-md text-gray-500 w-60 dark:text-gray-400 mx-auto py-4 font-light">
                                         {review.description}
