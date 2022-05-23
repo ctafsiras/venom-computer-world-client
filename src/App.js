@@ -16,6 +16,8 @@ import ManageProducts from './components/Pages/Dashboard/ManageProducts';
 import MyOrders from './components/Pages/Dashboard/MyOrders';
 import MyProfile from './components/Pages/Dashboard/MyProfile';
 import Home from './components/Pages/Home/Home';
+import MyPortfolio from './components/Pages/MyPortfolio';
+import NotFound from './components/Pages/NotFound';
 import Footer from './components/Shared/Footer';
 import Navbar from './components/Shared/Navbar';
 
@@ -26,6 +28,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/blogs' element={<Blogs />}></Route>
+        <Route path='/portfolio' element={<MyPortfolio />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
@@ -40,7 +43,7 @@ function App() {
         </Route>
         <Route path='/add' element={<AddProduct />}></Route>
         <Route path='/purchase/:id' element={<RequireAuth><Purchase /></RequireAuth>}></Route>
-
+        <Route path='*' element={<NotFound />}></Route>
       </Routes>
 
       <Footer />

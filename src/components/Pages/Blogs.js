@@ -22,7 +22,7 @@ const Blogs = () => {
             <p> <span className='text-primary font-bold'>Ans:</span> For this kind of operation javascript specially es6 has many useful beautiful methods such as filter array. if we need to find any data from an array of object we can simply use the filter method where we will filter data with array name and inside the filer after object name we give the variable name and then run the includes method to find some specific text.</p>
             <div className="divider"></div>
             <h2 className='text-secondary text-2xl'>6. What is a unit test? Why should write unit tests?</h2>
-            <p> <span className='text-primary font-bold'>Ans:</span> For this kind of operation javascript specially es6 has many useful beautiful methods such as filter array. if we need to find any data from an array of object we can simply use the filter method where we will filter data with array name and inside the filer after object name we give the variable name and then run the includes method to find some specific text.</p>
+            <p> <span className='text-primary font-bold'>Ans:</span> Unit testing is one of the software testing types which includes the original testing phase where the lowest portion or the modules of a software are tested entirely. Few small bugs can destroy full software. thats why every smallest portion of program or software is must to be tested.</p>
 
 
 

@@ -11,6 +11,7 @@ const Navbar = () => {
     const menu = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/blogs'>Blogs</NavLink></li>
+        <li><NavLink to='/portfolio'>Portfolio</NavLink></li>
 
         {user ?
 
