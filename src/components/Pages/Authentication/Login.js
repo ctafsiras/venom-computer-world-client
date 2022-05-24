@@ -4,6 +4,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
@@ -39,7 +40,8 @@ const Login = () => {
         //     })
 
     };
-    if (user) {
+    const [token] = useToken(user);
+    if (token) {
         navigate(from, { replace: true });
     }
     return (

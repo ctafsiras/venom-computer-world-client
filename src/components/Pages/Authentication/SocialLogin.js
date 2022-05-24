@@ -9,18 +9,9 @@ const SocialLogin = () => {
     //handle social login
     const handleSignIn = async () => {
         await signInWithGoogle();
-        const newUser = {
-            email: user.user?.email,
-            userName: user.user?.displayName,
-        }
-        axios.put(`http://localhost:4000/add-user/${user.email}`, newUser)
-            .then(res => {
-                console.log("token ", res.data?.token);
-                localStorage.setItem('token', res.data?.token);
-            })
-
     };
-    if (user) {
+    const [token] = useToken(user);
+    if (token) {
         return <Navigate to='/' />
     }
     return (

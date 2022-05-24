@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useQuery } from 'react-query';
 import { Navigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import useAdmin from '../../../hooks/useAdmin';

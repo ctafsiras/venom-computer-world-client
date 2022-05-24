@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { useForm } from 'react-hook-form';
 import { Link, Navigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 import SocialLogin from './SocialLogin';
 
 const Register = () => {
@@ -20,17 +21,9 @@ const Register = () => {
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name })
-        const newUser = {
-            email: data.email,
-            userName: data.name,
-        }
-        axios.put(`http://localhost:4000/add-user/${data.email}`, newUser)
-            .then(res => {
-                console.log("token ", res.data?.token);
-                localStorage.setItem('token', res.data?.token);
-            })
     };
-    if (user) {
+    const [token] = useToken(user);
+    if (token) {
         return <Navigate to='/' />
     }
     return (

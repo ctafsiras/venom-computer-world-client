@@ -15,8 +15,14 @@ const MakeAdmin = () => {
     }
     const makeAdmin = id => {
         const newAdmin = { role: 'admin' }
-        axios.patch(`http://localhost:4000/update-user/${id}`, newAdmin)
+
+        axios.patch(`http://localhost:4000/update-user/${id}`, newAdmin, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then(res => {
+                console.log(newAdmin);
                 refetch();
                 console.log(res)
             })
@@ -36,9 +42,7 @@ const MakeAdmin = () => {
 
                     {
                         users.map((user, index) =>
-                            <tr
-                                key={index}
-                            >
+                            <tr key={index}>
                                 <th>{index + 1}</th>
                                 <td>{user.userName}</td>
                                 <td>{user.email}</td>
