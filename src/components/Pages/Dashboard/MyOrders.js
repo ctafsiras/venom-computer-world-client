@@ -11,12 +11,12 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [openModal, setOpenModal] = useState(false);
     const [orderId, setOrderId] = useState('');
-    const { data: orders, isLoading, refetch } = useQuery('get-order', () => fetch(`http://localhost:4000/get-order/${user.email}`).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery('get-order-email', () => fetch(`https://venom-computer-world.herokuapp.com/get-order/${user.email}`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
     const handleCancel = id => {
-        axios.delete(`http://localhost:4000/delete-order/${id}`)
+        axios.delete(`https://venom-computer-world.herokuapp.com/delete-order/${id}`)
             .then(res => {
                 refetch();
                 console.log(res)
@@ -39,7 +39,7 @@ const MyOrders = () => {
                 <tbody>
 
                     {
-                        orders.map((order, index) => <>
+                        orders.map((order, index) =>
                             <tr key={index}>
                                 <th>{index + 1}</th>
                                 <td>{order.productName}</td>
@@ -55,10 +55,10 @@ const MyOrders = () => {
                                         setOpenModal(true)
                                         setOrderId(order._id)
                                     }}
-                                    for="my-modal-6"
+                                    htmlFor="my-modal-6"
                                     className={order.paid ? `btn btn-disabled` : 'btn btn-outline btn-error'}>Cancel</label></td>
                             </tr>
-                        </>)
+                        )
                     }
 
                 </tbody>

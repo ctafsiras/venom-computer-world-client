@@ -4,13 +4,13 @@ import { useQuery } from 'react-query';
 
 const MakeAdmin = () => {
     //make admin function
-    const { data: users, isLoading, refetch } = useQuery('get-user', () => fetch(`http://localhost:4000/get-user`).then(res => res.json()));
+    const { data: users, isLoading, refetch } = useQuery('get-user', () => fetch(`https://venom-computer-world.herokuapp.com/get-user`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
     const makeAdmin = id => {
         const newAdmin = { role: 'admin' }
-        axios.patch(`http://localhost:4000/update-user/${id}`, newAdmin)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${id}`, newAdmin)
             .then(res => {
                 refetch();
                 console.log(res)

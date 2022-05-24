@@ -1,22 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
-import auth from '../../../firebase.init';
 import DeleteConfirmModal from './DeleteConfirmModal';
 
 const ManageAllOrders = () => {
     //manage all user page
-    const [user] = useAuthState(auth);
     const [openModal, setOpenModal] = useState(false);
     const [orderId, setOrderId] = useState('');
-    const { data: orders, isLoading, refetch } = useQuery('get-order', () => fetch(`http://localhost:4000/get-order`).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery('get-order', () => fetch(`https://venom-computer-world.herokuapp.com/get-order`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
     const handleCancel = id => {
-        axios.delete(`http://localhost:4000/delete-order/${id}`)
+        axios.delete(`https://venom-computer-world.herokuapp.com/delete-order/${id}`)
             .then(res => {
                 refetch();
                 console.log(res)
@@ -26,7 +22,7 @@ const ManageAllOrders = () => {
         const updatedOrder = {
             status: "Shipped",
         }
-        axios.patch(`http://localhost:4000/update-order/${id}`, updatedOrder)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-order/${id}`, updatedOrder)
             .then(res => {
                 refetch();
             })
@@ -48,8 +44,8 @@ const ManageAllOrders = () => {
                 <tbody>
 
                     {
-                        orders.map((order, index) => <>
-                            <tr key={index}>
+                        orders.map((order, index) =>
+                            <tr key={order._id}>
                                 <th>{index + 1}</th>
                                 <td>{order.productName}</td>
                                 <td>{order.productPrice}</td>
@@ -65,14 +61,14 @@ const ManageAllOrders = () => {
                                 <td>
                                     <label
 
-                                    onClick={() => {
-                                        setOpenModal(true)
-                                        setOrderId(order._id)
-                                    }}
-                                    for="my-modal-6"
-                                    className={order.paid ? `btn btn-disabled` : 'btn btn-outline btn-error'}>Cancel</label></td>
+                                        onClick={() => {
+                                            setOpenModal(true)
+                                            setOrderId(order._id)
+                                        }}
+                                        htmlFor="my-modal-6"
+                                        className={order.paid ? `btn btn-disabled` : 'btn btn-outline btn-error'}>Cancel</label></td>
                             </tr>
-                        </>)
+                        )
                     }
 
                 </tbody>

@@ -24,7 +24,7 @@ const Register = () => {
             email: data.email,
             userName: data.name,
         }
-        axios.put(`http://localhost:4000/add-user/${data.email}`, newUser)
+        axios.put(`https://venom-computer-world.herokuapp.com/add-user/${data.email}`, newUser)
             .then(res => {
                 console.log("token ", res.data?.token);
                 localStorage.setItem('token', res.data?.token);
@@ -40,7 +40,7 @@ const Register = () => {
                 Register To Your Account
             </div>
             <SocialLogin></SocialLogin>
-            
+
             <div className="mt-5">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input

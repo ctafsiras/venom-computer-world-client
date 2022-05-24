@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DeleteConfirmModal = ({ orderId, handleCancel }) => {
-    
+
     return (
 
         <div>
@@ -14,10 +14,10 @@ const DeleteConfirmModal = ({ orderId, handleCancel }) => {
                     <h3 class="font-bold text-lg">Are You Sure You want to delete it?</h3>
 
                     <div class="modal-action">
-                        <label for="my-modal-6" class="btn">No</label>
+                        <label htmlFor="my-modal-6" class="btn">No</label>
                         <label
                             onClick={() => handleCancel(orderId)}
-                            for="my-modal-6" class="btn btn-error">Yes</label>
+                            htmlFor="my-modal-6" class="btn btn-error">Yes</label>
                     </div>
                 </div>
             </div>
