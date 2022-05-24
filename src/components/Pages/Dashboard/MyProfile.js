@@ -6,7 +6,7 @@ import auth from '../../../firebase.init';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
-    const { data: currentUser, isLoading, refetch } = useQuery(['get-user-email', user], () => fetch(`http://localhost:4000/get-user/${user.email}`, {
+    const { data: currentUser, isLoading, refetch } = useQuery(['get-user-email', user], () => fetch(`https://venom-computer-world.herokuapp.com/get-user/${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`
@@ -20,7 +20,7 @@ const MyProfile = () => {
         e.preventDefault();
         const education = e.target.education.value;
         const updatedUser = { education }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })
@@ -29,7 +29,7 @@ const MyProfile = () => {
         e.preventDefault();
         const phone = e.target.phone.value;
         const updatedUser = { phone }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })
@@ -38,7 +38,7 @@ const MyProfile = () => {
         e.preventDefault();
         const linkedin = e.target.linkedin.value;
         const updatedUser = { linkedin }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })
@@ -47,7 +47,7 @@ const MyProfile = () => {
         e.preventDefault();
         const location = e.target.location.value;
         const updatedUser = { location }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })

@@ -1,8 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ order, price }) => {
     const stripe = useStripe();
@@ -14,7 +13,7 @@ const CheckoutForm = ({ order, price }) => {
 
 
     useEffect(() => {
-        fetch("http://localhost:4000/create-payment-intent", {
+        fetch("https://venom-computer-world.herokuapp.com/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ price }),
@@ -69,7 +68,7 @@ const CheckoutForm = ({ order, price }) => {
                 status: "Pending",
                 transaction: paymentIntent.id
             }
-            axios.patch(`http://localhost:4000/update-order/${order._id}`, updatedOrder)
+            axios.patch(`https://venom-computer-world.herokuapp.com/update-order/${order._id}`, updatedOrder)
                 .then(res => {
                 })
             navigate('/dashboard/orders');
@@ -99,6 +98,7 @@ const CheckoutForm = ({ order, price }) => {
                 </button>
             </form>
             {error && <p className='text-red-600'>{error}</p>}
+            {success && <p className='text-red-600'>{success}</p>}
         </>
     );
 };

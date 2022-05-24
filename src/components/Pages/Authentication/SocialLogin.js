@@ -1,8 +1,8 @@
 import React from 'react';
 import auth from '../../../firebase.init';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import axios from 'axios';
 import { Navigate } from 'react-router-dom';
+import useToken from '../../../hooks/useToken';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);

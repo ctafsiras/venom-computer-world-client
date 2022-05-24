@@ -9,7 +9,7 @@ const AddReview = () => {
     const [user] = useAuthState(auth);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     //review add section
-    const { data: oldReview, isLoading, refetch } = useQuery(['get-review', user], () => fetch(`http://localhost:4000/get-review/${user.email}`).then(res => res.json()));
+    const { data: oldReview, isLoading, refetch } = useQuery(['get-review', user], () => fetch(`https://venom-computer-world.herokuapp.com/get-review/${user.email}`).then(res => res.json()));
 
     if (isLoading) {
         return <progress className="progress w-full"></progress>
@@ -25,13 +25,14 @@ const AddReview = () => {
             rating: data.rating,
             description: data.description,
         }
-        axios.post('http://localhost:4000/add-review', review)
+        axios.post('https://venom-computer-world.herokuapp.com/add-review', review)
             .then(res => {
                 reset();
                 refetch();
             })
 
     };
+    console.log(errors);
     return (
         <div className='max-w-lg'>
 

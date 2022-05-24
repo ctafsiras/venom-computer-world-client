@@ -14,7 +14,7 @@ const AddProduct = () => {
             min_order: data.min_order,
             image: data.image
         }
-        axios.post('http://localhost:4000/add-product', product)
+        axios.post('https://venom-computer-world.herokuapp.com/add-product', product)
             .then(res => {
                 reset();
                 console.log(res)
