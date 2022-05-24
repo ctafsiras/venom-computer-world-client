@@ -14,7 +14,7 @@ const CheckoutForm = ({ order, price }) => {
 
 
     useEffect(() => {
-        fetch("https://venom-computer-world.herokuapp.com/create-payment-intent", {
+        fetch("http://localhost:4000/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ price }),
@@ -69,7 +69,7 @@ const CheckoutForm = ({ order, price }) => {
                 status: "Pending",
                 transaction: paymentIntent.id
             }
-            axios.patch(`https://venom-computer-world.herokuapp.com/update-order/${order._id}`, updatedOrder)
+            axios.patch(`http://localhost:4000/update-order/${order._id}`, updatedOrder)
                 .then(res => {
                 })
             navigate('/dashboard/orders');

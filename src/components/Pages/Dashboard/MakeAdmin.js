@@ -4,13 +4,18 @@ import { useQuery } from 'react-query';
 
 const MakeAdmin = () => {
     //make admin function
-    const { data: users, isLoading, refetch } = useQuery('get-user', () => fetch(`https://venom-computer-world.herokuapp.com/get-user`).then(res => res.json()));
+    const { data: users, isLoading, refetch } = useQuery('get-user', () => fetch(`http://localhost:4000/get-user`, {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
     const makeAdmin = id => {
         const newAdmin = { role: 'admin' }
-        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${id}`, newAdmin)
+        axios.patch(`http://localhost:4000/update-user/${id}`, newAdmin)
             .then(res => {
                 refetch();
                 console.log(res)
@@ -47,7 +52,7 @@ const MakeAdmin = () => {
                 </tbody>
             </table>
             {
-                users.length === 0 && <p className='text-xl p-4 text-warning'>Sorry! You DoNot Have Any Order Right Now, Please Order something</p>
+                users.length === 0 && <p className='text-xl p-4 text-warning'>Sorry! You DoNot Have Any User  Right Now, Please add someone.</p>
             }
         </div>
     );

@@ -7,12 +7,17 @@ const ManageAllOrders = () => {
     //manage all user page
     const [openModal, setOpenModal] = useState(false);
     const [orderId, setOrderId] = useState('');
-    const { data: orders, isLoading, refetch } = useQuery('get-order', () => fetch(`https://venom-computer-world.herokuapp.com/get-order`).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery('get-order', () => fetch(`http://localhost:4000/get-order`, {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    }).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
     const handleCancel = id => {
-        axios.delete(`https://venom-computer-world.herokuapp.com/delete-order/${id}`)
+        axios.delete(`http://localhost:4000/delete-order/${id}`)
             .then(res => {
                 refetch();
                 console.log(res)
@@ -22,7 +27,7 @@ const ManageAllOrders = () => {
         const updatedOrder = {
             status: "Shipped",
         }
-        axios.patch(`https://venom-computer-world.herokuapp.com/update-order/${id}`, updatedOrder)
+        axios.patch(`http://localhost:4000/update-order/${id}`, updatedOrder)
             .then(res => {
                 refetch();
             })

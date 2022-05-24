@@ -11,12 +11,12 @@ const MyPortfolio = () => {
             <p className='text-xl'>Technological Skills (Web Developer) : HTML, CSS, JavaScript, ReactJS, NodeJS, MongoDB, ExpressJs.</p>
             <p className='text-xl'>Technological Skills (Others) : Digital Marketing, Problem Solving, WordPress Development.</p>
             <p className='text-xl'>Projects I have done yet.</p>
-            <ol className='text-xl text-blue-800 underline'>
-            
-                <li>1. <a href="https://bycycle-mart.netlify.app/">ByCycle Mart</a></li>
-                <li>2. <a href="https://tanbirs-legal-solution.web.app/">Tanbir's Legal Solution
-</a></li>
-                <li>3. <a href="https://bookathon-warehouse-client.web.app/">Bookathon Warehouse</a></li>
+            <ol className='text-xl text-blue-800'>
+
+                <li>1. <a className='underline' href="https://bookathon-warehouse-client.web.app/">Bookathon Warehouse</a></li>
+                <li>2. <a className='underline' href="https://tanbirs-legal-solution.web.app/">Tanbir's Legal Solution </a></li>
+                <li>3. <a className='underline' href="https://bycycle-mart.netlify.app/">ByCycle Mart</a></li>
+               
             </ol>
         </div>
     );

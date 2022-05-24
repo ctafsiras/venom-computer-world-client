@@ -3,16 +3,19 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Navigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useAdmin from '../../../hooks/useAdmin';
 
 const RequireAdmin = ({ children }) => {
-    const [user] = useAuthState(auth);
     //protecting from other user for admin
-    const { data: currentUser, isLoading } = useQuery(['get-user-email', user], () => fetch(`https://venom-computer-world.herokuapp.com/get-user/${user.email}`).then(res => res.json()));
-    if (isLoading) {
+    const [user, loading] = useAuthState(auth);
+    const [admin, adminLoading] = useAdmin(user);
+    if (loading) {
+        return <progress className="progress w-full"></progress>
+    }
+    if (adminLoading) {
         return <progress className="progress w-full"></progress>
     }
 
-    const admin = currentUser.role === 'admin';
 
     if (!admin) {
         return <Navigate to="/" />

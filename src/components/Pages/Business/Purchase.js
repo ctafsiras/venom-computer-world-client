@@ -13,7 +13,7 @@ const Purchase = () => {
     const [address, setAddress] = useState('');
     const navigate = useNavigate();
 
-    const { data: product, isLoading, refetch } = useQuery('product-id', () => fetch(`https://venom-computer-world.herokuapp.com/get-id-product/${id}`).then(res => res.json()));
+    const { data: product, isLoading, refetch } = useQuery('product-id', () => fetch(`http://localhost:4000/get-id-product/${id}`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }
@@ -35,7 +35,7 @@ const Purchase = () => {
             status: 'Not Paid',
 
         }
-        axios.post('https://venom-computer-world.herokuapp.com/add-order', order)
+        axios.post('http://localhost:4000/add-order', order)
             .then(res => {
 
                 if (res.status === 200) {
@@ -44,7 +44,7 @@ const Purchase = () => {
                     const p = {
                         quantity: newQuantity
                     }
-                    axios.patch(`https://venom-computer-world.herokuapp.com/update-product/${product._id}`, p)
+                    axios.patch(`http://localhost:4000/update-product/${product._id}`, p)
                         .then(res => {
                             refetch();
                             setOrderAmount(product.min_order);

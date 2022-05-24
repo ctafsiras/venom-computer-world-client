@@ -3,20 +3,27 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { NavLink, Outlet } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Dashboard = () => {
 
     //dashboard section
     const [user, loading] = useAuthState(auth);
-    // if (loading) {
-    //     return <progress className="progress w-full"></progress>
-    // }
-    const { data: currentUser, isLoading } = useQuery(['get-user-email', user], () => fetch(`https://venom-computer-world.herokuapp.com/get-user/${user.email}`).then(res => res.json()));
-    if (isLoading) {
+    const [admin, adminLoading] = useAdmin(user);
+    if (loading) {
+        return <progress className="progress w-full"></progress>
+    }
+    // const { data: currentUser, isLoading } = useQuery(['get-user-email', user], () => fetch(`http://localhost:4000/get-user/${user.email}`, {
+    //     method: 'GET',
+    //     headers: {
+    //         authorization: `Bearer ${localStorage.getItem('token')}`
+    //     }
+    // }).then(res => res.json()));
+    if (adminLoading) {
         return <progress className="progress w-full"></progress>
     }
 
-    const admin = currentUser.role === 'admin';
+    // const admin = currentUser.role === 'admin';
 
     return (
         <div className="drawer drawer-mobile">
