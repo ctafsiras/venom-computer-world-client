@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { sendEmailVerification } from 'firebase/auth';
 import React from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -25,9 +24,8 @@ const Register = () => {
     const [token] = useToken(user);
     if (token) {
         return <Navigate to='/' />
-    }
+    };
     return (
-
         <div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10 mx-auto h-[90vh]">
             <div className="self-center font-bold mb-6 text-xl font-light text-gray-600 sm:text-2xl">
                 Register To Your Account
