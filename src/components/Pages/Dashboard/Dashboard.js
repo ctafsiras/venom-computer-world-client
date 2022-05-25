@@ -12,7 +12,7 @@ const Dashboard = () => {
     if (loading) {
         return <progress className="progress w-full"></progress>
     }
-    // const { data: currentUser, isLoading } = useQuery(['get-user-email', user], () => fetch(`https://venom-computer-world.herokuapp.com/get-user/${user.email}`, {
+    // const { data: currentUser, isLoading } = useQuery(['get-user-email', user], () => fetch(`http://localhost:4000/get-user/${user.email}`, {
     //     method: 'GET',
     //     headers: {
     //         authorization: `Bearer ${localStorage.getItem('token')}`

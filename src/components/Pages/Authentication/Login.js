@@ -33,7 +33,7 @@ const Login = () => {
         // }
 
         // console.log('objectNew', newUser);
-        // axios.put(`https://venom-computer-world.herokuapp.com/add-user/${user.email}`, newUser)
+        // axios.put(`http://localhost:4000/add-user/${user.email}`, newUser)
         //     .then(res => {
         //         console.log("token ", res.data?.token);
         //         localStorage.setItem('token', res.data?.token);
@@ -46,7 +46,7 @@ const Login = () => {
     }
     return (
 
-        <div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10 mx-auto h-[90vh]">
+        <div className="flex z-10 flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10 mx-auto h-[90vh]">
             <div className="self-center font-bold mb-6 text-xl font-light text-gray-600 sm:text-2xl">
                 Login To Your Account
             </div>

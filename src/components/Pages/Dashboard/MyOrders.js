@@ -11,7 +11,7 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [openModal, setOpenModal] = useState(false);
     const [orderId, setOrderId] = useState('');
-    const { data: orders, isLoading, refetch } = useQuery('get-order-email', () => fetch(`https://venom-computer-world.herokuapp.com/get-order/${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery('get-order-email', () => fetch(`http://localhost:4000/get-order/${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`
@@ -21,7 +21,7 @@ const MyOrders = () => {
         return <progress className="progress w-full"></progress>
     }
     const handleCancel = id => {
-        axios.delete(`https://venom-computer-world.herokuapp.com/delete-order/${id}`)
+        axios.delete(`http://localhost:4000/delete-order/${id}`)
             .then(res => {
                 refetch();
                 console.log(res)

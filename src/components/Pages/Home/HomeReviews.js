@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 const HomeReviews = () => {
     //review section
-    const { data: reviews, isLoading } = useQuery(['get-review'], () => fetch(`https://venom-computer-world.herokuapp.com/get-review`).then(res => res.json()));
+    const { data: reviews, isLoading } = useQuery(['get-review'], () => fetch(`http://localhost:4000/get-review`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }

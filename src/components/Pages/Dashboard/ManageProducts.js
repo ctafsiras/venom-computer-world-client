@@ -6,7 +6,7 @@ import DeleteConfirmModal from './DeleteConfirmModal';
 const ManageProducts = () => {
     const [openModal, setOpenModal] = useState(false);
     const [productId, setProductId] = useState('');
-    const { data: products, isLoading, refetch } = useQuery('product', () => fetch(`https://venom-computer-world.herokuapp.com/get-product`, {
+    const { data: products, isLoading, refetch } = useQuery('product', () => fetch(`http://localhost:4000/get-product`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`
@@ -17,7 +17,7 @@ const ManageProducts = () => {
         return <progress className="progress w-full"></progress>
     }
     const handleCancel = id => {
-        axios.delete(`https://venom-computer-world.herokuapp.com/delete-product/${id}`)
+        axios.delete(`http://localhost:4000/delete-product/${id}`)
             .then(res => {
                 refetch();
                 console.log(res)
