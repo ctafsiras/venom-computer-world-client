@@ -8,8 +8,8 @@ import auth from '../../../firebase.init';
 const AddReview = () => {
     const [user, loading] = useAuthState(auth);
     //review add section
-    const { data: oldReview, isLoading, refetch } = useQuery(['get-review-email', user], () => fetch(`http://localhost:4000/get-review/${user.email}`)
-    .then(res => res.json()));
+    const { data: oldReview, isLoading, refetch } = useQuery(['get-review-email', user], () => fetch(`https://venom-computer-world.herokuapp.com/get-review/${user.email}`)
+        .then(res => res.json()));
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     if (loading) {
@@ -29,7 +29,7 @@ const AddReview = () => {
             rating: data.rating,
             description: data.description,
         }
-        axios.post('http://localhost:4000/add-review', review)
+        axios.post('https://venom-computer-world.herokuapp.com/add-review', review)
             .then(res => {
                 reset();
                 refetch();

@@ -6,7 +6,7 @@ import auth from '../../../firebase.init';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
-    const { data: currentUser, isLoading, refetch } = useQuery(['get-user-email', user], () => fetch(`http://localhost:4000/get-user/${user.email}`, {
+    const { data: currentUser, isLoading, refetch } = useQuery(['get-user-email', user], () => fetch(`https://venom-computer-world.herokuapp.com/get-user/${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`
@@ -20,7 +20,7 @@ const MyProfile = () => {
         e.preventDefault();
         const education = e.target.education.value;
         const updatedUser = { education }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })
@@ -29,7 +29,7 @@ const MyProfile = () => {
         e.preventDefault();
         const phone = e.target.phone.value;
         const updatedUser = { phone }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })
@@ -38,7 +38,7 @@ const MyProfile = () => {
         e.preventDefault();
         const linkedin = e.target.linkedin.value;
         const updatedUser = { linkedin }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })
@@ -47,14 +47,14 @@ const MyProfile = () => {
         e.preventDefault();
         const location = e.target.location.value;
         const updatedUser = { location }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })
     }
     const handleUpdate = data => {
         const updatedUser = { [data]: '' }
-        axios.patch(`http://localhost:4000/update-user/${currentUser._id}`, updatedUser)
+        axios.patch(`https://venom-computer-world.herokuapp.com/update-user/${currentUser._id}`, updatedUser)
             .then(res => {
                 refetch();
             })
@@ -66,8 +66,8 @@ const MyProfile = () => {
             <h3>Email: {currentUser.email}</h3>
             {
                 currentUser.education ? <h3>Education: {currentUser.education} <button
-                onClick={() => handleUpdate('education')}
-                className='btn btn-outline btn-sm my-2'>Update</button></h3> :
+                    onClick={() => handleUpdate('education')}
+                    className='btn btn-outline btn-sm my-2'>Update</button></h3> :
                     <form onSubmit={handleEducation}>
                         <input name='education' type="text" placeholder="Enter Your Educational Qualification" className="input input-bordered w-full max-w-xs mt-2" />
                         <button type='submit'
@@ -86,8 +86,8 @@ const MyProfile = () => {
             }
             {
                 currentUser.linkedin ? <h3>Linkedin Profile: {currentUser.linkedin} <button
-                onClick={() => handleUpdate('linkedin')}
-                className='btn btn-outline btn-sm my-2'>Update</button></h3> :
+                    onClick={() => handleUpdate('linkedin')}
+                    className='btn btn-outline btn-sm my-2'>Update</button></h3> :
                     <form onSubmit={handleLinkedin}>
                         <input name='linkedin' type="text" placeholder="Enter Your Linkedin Profile URL" className="input input-bordered w-full max-w-xs mt-2" />
                         <button type='submit'
@@ -96,8 +96,8 @@ const MyProfile = () => {
             }
             {
                 currentUser.location ? <h3>Location: {currentUser.location} <button
-                onClick={() => handleUpdate('location')}
-                className='btn btn-outline btn-sm my-2'>Update</button></h3> :
+                    onClick={() => handleUpdate('location')}
+                    className='btn btn-outline btn-sm my-2'>Update</button></h3> :
                     <form onSubmit={handleLocation}>
                         <input name='location' type="text" placeholder="Enter Your Location" className="input input-bordered w-full max-w-xs mt-2" />
                         <button type='submit'

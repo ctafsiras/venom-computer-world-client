@@ -11,7 +11,7 @@ const Payment = () => {
 
     //payment page for stripe
     const { id } = useParams();
-    const { data: order, isLoading } = useQuery('get-order-id', () => fetch(`http://localhost:4000/get-order-id/${id}`).then(res => res.json()));
+    const { data: order, isLoading } = useQuery('get-order-id', () => fetch(`https://venom-computer-world.herokuapp.com/get-order-id/${id}`).then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }

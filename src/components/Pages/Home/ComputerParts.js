@@ -4,7 +4,7 @@ import ComputerPartCard from './ComputerPartCard';
 
 const ComputerParts = () => {
     //computer parts
-    const { data: products, isLoading } = useQuery('product', () => fetch('http://localhost:4000/get-six-product').then(res => res.json()));
+    const { data: products, isLoading } = useQuery('product', () => fetch('https://venom-computer-world.herokuapp.com/get-six-product').then(res => res.json()));
     if (isLoading) {
         return <progress className="progress w-full"></progress>
     }

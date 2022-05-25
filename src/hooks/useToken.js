@@ -9,7 +9,7 @@ const useToken = (user) => {
     useEffect(() => {
         if (email) {
             const newUser = { email, userName };
-            axios.put(`http://localhost:4000/add-user/${email}`, newUser)
+            axios.put(`https://venom-computer-world.herokuapp.com/add-user/${email}`, newUser)
                 .then(res => {
                     setToken(res.data?.token);
                     localStorage.setItem('token', res.data?.token);
